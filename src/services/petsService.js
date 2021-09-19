@@ -17,4 +17,4 @@ export const getOne = (petId) => {
     return fetch(`${url}/${petId}`)
         .then(res => res.json())
         .catch(error => console.log(error));
-}
+};

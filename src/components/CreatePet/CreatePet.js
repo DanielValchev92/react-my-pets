@@ -1,11 +1,18 @@
+import * as petsService from '../../services/petsService';
 
-const CreatePet = () => {
+const CreatePet = ({
+    history,
+}) => {
 
     const onCreatePetSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(e.target.name.value);
-        console.log(e.target.description.value);
-        console.log(e.target.category.value);
+
+        const { name, description, imageURL, category } = e.target;
+
+        petsService.create(name.value, description.value, imageURL.value, category.value)
+            .then(() => {
+                history.push('/')
+            })
     }
 
     return (

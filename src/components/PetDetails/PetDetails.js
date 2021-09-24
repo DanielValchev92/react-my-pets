@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as petsService from '../../services/petsService';
 
 const PetDetails = ({
@@ -12,13 +13,18 @@ const PetDetails = ({
     }, [])
 
     return (
-        <section class="detailsOtherPet">
+        <section className="detailsOtherPet">
             <h3>{pet.name}</h3>
-            <p>Pet counter: {pet.likes} <a href="#"><button class="button"><i class="fas fa-heart"></i>
+            <p>Pet counter: {pet.likes} <a href="#"><button className="button"><i className="fas fa-heart"></i>
                 Pet</button></a>
             </p>
-            <p class="img"><img src={pet.imageURL} /></p>
-            <p class="description">{pet.description}</p>
+            <p className="img"><img src={pet.imageURL} /></p>
+            <p className="description">{pet.description}</p>
+            <div className="pet-info">
+                <Link to={`/pets/details/${pet.id}/edit`}><button className="button">Edit</button></Link>
+                <Link to="#"><button className="button">Delete</button></Link>
+                <i className="fas fa-heart"></i> <span>5</span>
+            </div>
         </section>
     );
 }

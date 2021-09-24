@@ -15,8 +15,8 @@ const PetDetails = ({
     const onPetButtonClickHandler = () => {
         let incrementedLikes = pet.likes + 1;
         petsService.pet(match.params.petId, incrementedLikes)
-            .then(() => {
-                setPet(state => ({ ...state, likes: incrementedLikes }))
+            .then((updatedPet) => {
+                setPet(state => ({ ...state, likes: Number(updatedPet.likes) }))
             });
     };
 

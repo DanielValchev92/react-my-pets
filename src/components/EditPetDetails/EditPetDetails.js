@@ -1,11 +1,14 @@
 
 import { useEffect, useState } from "react";
 import * as petsService from '../../services/petsService';
+import InputError from "../Shared/InputError/InputError";
 
 const EditPetDetails = ({
-    match
+    match,
+    history
 }) => {
     const [pet, setPet] = useState({});
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         petsService.getOne(match.params.petId)
@@ -15,11 +18,26 @@ const EditPetDetails = ({
     const onDescriptionSaveSubmit = (e) => {
         e.preventDefault();
         console.log(e.target);
+
+        let petId = match.params.petId;
+
+        let updatedPet = { ...pet, description: e.target.description.value };
+
+        petsService.update(petId, updatedPet)
+            .then(() => {
+                history.push(`/pets/details/${petId}`)
+                return;
+            });
     }
-    console.log(pet);
 
     const onDescriptionChangeHandler = (e) => {
         console.log(e.target.value);
+
+        if (e.target.value.length < 10) {
+            setErrorMessage('Description too short');
+        } else {
+            setErrorMessage('');
+        }
     };
 
     return (
@@ -29,7 +47,8 @@ const EditPetDetails = ({
             <p className="img"><img
                 src={pet.imageURL} /></p>
             <form onSubmit={onDescriptionSaveSubmit}>
-                <textarea type="text" name="description" onChange={onDescriptionChangeHandler} defaultValue={pet.description}></textarea>
+                <textarea type="text" name="description" onBlur={onDescriptionChangeHandler} defaultValue={pet.description}></textarea>
+                <InputError>{errorMessage}</InputError>
                 <button className="button"> Save</button>
             </form>
         </section>

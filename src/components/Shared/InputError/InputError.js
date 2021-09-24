@@ -1,12 +1,13 @@
+import './InputError.css';
 
-const InputError = ({ message }) => {
+const InputError = ({ children }) => {
 
-    if (!message) {
+    if (!children) {
         return null;
     }
 
     return (
-        <div className="input-error">{message}</div>
+        <div className="input-error">{children}</div>
     );
 }
 

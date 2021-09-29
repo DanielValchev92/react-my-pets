@@ -1,13 +1,32 @@
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 
 
 const Login = () => {
+
+    const onLoginFormSubmitHandler = (e) => {
+        e.preventDefault();
+
+        const username = e.target.username.value;
+        const password = e.target.password.value;
+
+        console.log(username, password);
+
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, username, password)
+            .then((userCredential) => {
+                console.log(userCredential);
+            })
+    };
+
+
     return (
         <section className="login">
-            <form>
+            <form onSubmit={onLoginFormSubmitHandler}>
                 <fieldset>
                     <legend>Login</legend>
                     <p className="field">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <span className="input">
                             <input type="text" name="username" id="username" placeholder="Username" />
                             <span className="actions"></span>
@@ -15,7 +34,7 @@ const Login = () => {
                         </span>
                     </p>
                     <p className="field">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <span className="input">
                             <input type="password" name="password" id="password" placeholder="Password" />
                             <span className="actions"></span>

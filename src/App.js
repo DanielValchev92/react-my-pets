@@ -5,6 +5,7 @@ import Categories from './components/Categories/Categories';
 import PetDetails from './components/PetDetails/PetDetails';
 import EditPetDetails from './components/EditPetDetails/EditPetDetails';
 import CreatePet from './components/CreatePet/CreatePet';
+import './utils/firebase';
 import './App.css';
 
 function App() {

@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 //import 'firebase/auth';
 
 const firebaseConfig = {
@@ -10,11 +11,22 @@ const firebaseConfig = {
     appId: "1:963537762831:web:bffd160229e46a3775017a"
 };
 
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log('Logged');
+    } else {
+        console.log('Not Logged');
+    }
+});
+
 // if (!firebase.apps.length) {
 //     firebase.initializeApp(firebaseConfig);
 // }
 
 const app = initializeApp(firebaseConfig);
+
+
 
 
 // export default firebase;

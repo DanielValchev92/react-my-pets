@@ -14,7 +14,7 @@ const Header = () => {
                     <div className="second-bar">
                         <ul>
                             <li>Welcome, Ivan!</li>
-                            <li><a href="#"><i className="fas fa-sign-out-alt"></i> Logout</a></li>
+                            <li><Link to="/"><i className="fas fa-sign-out-alt"></i> Logout</Link></li>
                         </ul>
                     </div>
                 </section>

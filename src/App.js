@@ -9,6 +9,7 @@ import CreatePet from './components/CreatePet/CreatePet';
 import './utils/firebase';
 import './App.css';
 
+
 function App() {
   return (
     <div className="container">
@@ -22,7 +23,6 @@ function App() {
         <Route path="/pets/details/:petId/edit" component={EditPetDetails} />
         <Route path="/pets/create" component={CreatePet} />
         <Route path="/login" component={Login} />
-        <Route path="/" />
       </Switch>
 
       <Footer />
